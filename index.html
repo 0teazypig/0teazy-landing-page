@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>0teazy - Official Landing Page</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: #0a0a0a;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+      padding: 20px;
+      position: relative;
+      background: url('your-image.jpg') no-repeat center center/cover;
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.55);
+      z-index: 1;
+    }
+
+    header img, header h1, header p, .links {
+      position: relative;
+      z-index: 2;
+    }
+
+    header img {
+      width: 500px;
+      height: 500px;
+      border-radius: 10%;
+      margin-bottom: 20px;
+      border: 1px solid #fff;
+      transition: transform 0.4s ease;
+    }
+
+    header img:hover {
+      transform: scale(1.05);
+    }
+
+    header h1 {
+      font-size: 2.8rem;
+      margin: 0;
+    }
+
+    header p {
+      font-size: 1.1rem;
+      margin: 10px 0 25px 0;
+    }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      background: #fff;
+      color: #172459;
+      font-size: 1.5rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .links a:hover {
+      background: rgb(136,174,187);
+      color: #fff;
+      transform: scale(1.1);
+    }
+
+    section {
+      padding: 70px 25px;
+      text-align: center;
+    }
+
+    section h2 {
+      font-size: 2.3rem;
+      margin-bottom: 20px;
+    }
+
+    section p {
+      max-width: 700px;
+      margin: auto;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    form {
+      margin-top: 20px;
+    }
+
+    input[type="email"] {
+      padding: 12px;
+      border-radius: 30px;
+      border: none;
+      width: 250px;
+      max-width: 80%;
+      margin-bottom: 10px;
+    }
+
+    button[type="submit"] {
+      padding: 12px 25px;
+      border-radius: 30px;
+      border: none;
+      background: rgb(255,232,138);
+      color: #172459;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button[type="submit"]:hover {
+      background: #88aebb;
+    }
+
+    footer {
+      background: #111;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      color: #88aebb;
+      text-decoration: none;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      header img {
+        width: 200px;
+        height: 200px;
+      }
+      header h1 { font-size: 2.2rem; }
+      header p { font-size: 1rem; }
+      section h2 { font-size: 2rem; }
+      section p { font-size: 1rem; padding: 0 10px; }
+      input[type="email"], button[type="submit"] { width: 80%; }
+    }
+
+    @media (max-width: 480px) {
+      header h1 { font-size: 1.8rem; }
+      header p { font-size: 0.95rem; }
+      .links { gap: 15px; }
+      .links a { width: 50px; height: 50px; font-size: 1.3rem; }
+      section h2 { font-size: 1.7rem; }
+      footer { font-size: 0.8rem; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header id="home">
+    <img src="0teazy.jpg" alt="0teazy Cover Art">
+    <h1>0teazy</h1>
+    <p>New Music Out Now! Stream on your favorite platform.</p>
+    <div class="links">
+      <a href="https://open.spotify.com/artist/6pHX1wku64Uag3UZFGY5uK" target="_blank" aria-label="Spotify"><i class="fab fa-spotify"></i></a>
+      <a href="https://music.apple.com/za/artist/0teazy/1721726976" target="_blank" aria-label="Apple Music"><i class="fab fa-apple"></i></a>
+      <a href="https://youtube.com/@0teazy" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+      <a href="https://www.tiktok.com/@0teazy_" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+      <a href="https://soundcloud.com/" target="_blank" aria-label="SoundCloud"><i class="fab fa-soundcloud"></i></a>
+    </div>
+  </header>
+
+  <section id="about">
+    <h2>About 0teazy</h2>
+    <p>
+      0teazy is an emerging South African artist known for his paintings, beats, and artistic mind.
+      Inspired by African creativity and storytelling, 0teazy creates music that resonates
+      across cultures and mindsets. Follow for exclusive updates, behind-the-scenes content, 
+      and new releases.
+    </p>
+  </section>
+
+  <section id="contact">
+    <h2>Stay Connected</h2>
+    <p>Subscribe to get updates about new music, shows, and exclusive content.</p>
+
+    <!-- Functional Formspree Email Form -->
+    <form action="https://formspree.io/f/manpakln" method="POST">
+      <input type="email" name="email" placeholder="Enter your email" required>
+      <br>
+      <button type="submit">Subscribe</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>© 2025 0teazy. All rights reserved. | <a href="#home">Back to top</a></p>
+  </footer>
+
+</body>
+</html>
