@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>0teazy — Visual & Sonic Journal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+  <style>
+    :root { --bg:#0a0a0a; --text:#fff; --accent:#88aebb; --button:rgb(255,232,138); }
+    body { margin:0; font-family:'Montserrat',sans-serif; background:var(--bg); color:var(--text); overflow-x:hidden; }
+    nav { display:flex; justify-content:space-between; padding:15px 25px; background:#111; position:sticky; top:0; z-index:100; }
+    nav a { color:#fff; text-decoration:none; margin:0 10px; } nav a:hover{ color:var(--accent); }
+
+    header { text-align:center; padding:100px 25px 40px; }
+    header h1{font-size:3rem;margin:0;} header p{color:#ccc;margin-top:10px;}
+
+    .filter-bar { text-align:center; margin-bottom:30px; }
+    .filter-bar button { margin:0 10px 10px; padding:10px 18px; border:none; border-radius:25px; background:var(--button); color:#172459; cursor:pointer; transition:0.3s; font-weight:bold; }
+    .filter-bar button:hover { background:var(--accent); color:#fff; }
+
+    .gallery { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:25px; padding:0 25px 50px; }
+    .gallery-item { position:relative; border-radius:15px; overflow:hidden; cursor:pointer; transition:transform 0.3s ease; }
+    .gallery-item:hover{transform:scale(1.03);}
+    .gallery-item img{width:100%;height:100%;object-fit:cover;}
+    .gallery-item .caption{position:absolute;bottom:0;background:rgba(0,0,0,0.7);width:100%;text-align:center;padding:8px;font-size:1rem;}
+
+    .experience { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(10,10,10,0.95); backdrop-filter:blur(8px); display:none; align-items:center; justify-content:center; z-index:999; overflow-y:auto; padding:40px; }
+    .experience.active{display:flex; animation:fadeIn 0.4s ease;}
+    @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+    .experience-content { max-width:900px; text-align:center; color:#fff; }
+    .experience-content img{width:100%; border-radius:15px; margin-bottom:20px;}
+    .experience-content h2{font-size:2rem;margin-bottom:10px;}
+    .experience-content p{font-size:1.1rem; line-height:1.6;color:#ccc;}
+    .music-player{margin:20px 0;}
+    .reflection-toggle{padding:10px 20px;margin-top:10px;background:var(--button);border:none;border-radius:25px;font-weight:bold;cursor:pointer;}
+    .reflection-toggle:hover{background:var(--accent);color:#fff;}
+
+    .close-btn{position:fixed;top:30px;right:40px;font-size:1.8rem;color:#fff;background:rgba(255,255,255,0.1);border-radius:50%;width:45px;height:45px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background 0.3s;}
+    .close-btn:hover{background:rgba(255,255,255,0.3);}
+
+    #ambientToggle{position:fixed;bottom:40px;right:40px;width:50px;height:50px;background:rgba(255,255,255,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.4rem;transition:0.3s;}
+    #ambientToggle:hover{background:rgba(255,255,255,0.3);}
+
+    footer{text-align:center;padding:25px;background:#111;color:#aaa;font-size:0.9rem;}
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html"><i class="fas fa-home"></i> Home</a>
+  <a href="art.html"><i class="fas fa-palette"></i> Gallery</a>
+</nav>
+
+<header>
+  <h1 data-aos="fade-up">0teazy Visual & Sonic Journal</h1>
+  <p data-aos="fade-up" data-aos-delay="200">Every piece tells a story — visually, musically, spiritually.</p>
+</header>
+
+<div class="filter-bar">
+  <button onclick="filterArt('all')">All</button>
+  <button onclick="filterArt('paint')">Paintings</button>
+  <button onclick="filterArt('digital')">Digital</button>
+  <button onclick="filterArt('2024')">2024</button>
+</div>
+
+<section class="gallery" id="gallery">
+  <div class="gallery-item" data-category="paint" onclick="openExperience(0)" data-aos="zoom-in">
+    <img src="art1.jpg" alt="Art 1"><div class="caption">Waves of Sound</div>
+  </div>
+  <div class="gallery-item" data-category="digital" onclick="openExperience(1)" data-aos="zoom-in">
+    <img src="art2.jpg" alt="Art 2"><div class="caption">Echoes of Gold</div>
+  </div>
+  <div class="gallery-item" data-category="paint" onclick="openExperience(2)" data-aos="zoom-in">
+    <img src="art3.jpg" alt="Art 3"><div class="caption">Mindscape</div>
+  </div>
+</section>
+
+<div id="experienceModal" class="experience">
+  <div class="close-btn" onclick="closeExperience()"><i class="fas fa-times"></i></div>
+  <div class="experience-content" id="experienceContent"></div>
+</div>
+
+<audio id="ambient" src="ambient.mp3" loop></audio>
+<div id="ambientToggle" onclick="toggleAudio()"><i id="audioIcon" class="fas fa-volume-up"></i></div>
+
+<footer>
+  © 2025 0teazy — All Rights Reserved
+</footer>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>AOS.init({duration:1000,once:true});</script>
+
+<script>
+const artworks = [
+  { title:"Waves of Sound", image:"art1.jpg", description:"‘Waves of Sound’ explores how frequencies shape emotional landscapes — inspired by rhythm.", spotify:"https://open.spotify.com/embed/track/xyz", reflection:"Painted to the rhythm of a heartbeat rather than sound." },
+  { title:"Echoes of Gold", image:"art2.jpg", description:"‘Echoes of Gold’ symbolizes ancestral memory and self-belief.", spotify:"https://open.spotify.com/embed/track/abc", reflection:"Each brush stroke mirrors a lyric in motion." },
+  { title:"Mindscape", image:"art3.jpg", description:"An introspective piece — the clash between chaos and serenity when creating art from emotion.", spotify:"https://open.spotify.com/embed/playlist/123", reflection:"Explores inner mental landscapes." }
+];
+
+const audio = document.getElementById('ambient');
+const audioIcon = document.getElementById('audioIcon');
+
+function toggleAudio(){ if(audio.paused){ audio.play(); audioIcon.className='fas fa-volume-up'; }else{ audio.pause(); audioIcon.className='fas fa-volume-mute'; } }
+
+function openExperience(index){
+  const modal=document.getElementById('experienceModal');
+  const content=document.getElementById('experienceContent');
+  const art=artworks[index];
+  content.innerHTML=`
+    <img src="${art.image}" alt="${art.title}">
+    <h2>${art.title}</h2>
+    <p>${art.description}</p>
+    <button class="reflection-toggle" onclick="toggleReflection(this)">${art.reflection? 'Read Reflection':' '}</button>
+    <div class="reflection" style="display:none;color:#aaa;margin-top:15px;">${art.reflection}</div>
+    <div class="music-player">
+      <iframe style="border-radius:12px" src="${art.spotify}" width="100%" height="152" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture" loading="lazy"></iframe>
+    </div>
+  `;
+  modal.classList.add('active');
+  audio.volume=0.1;
+}
+
+function closeExperience(){ document.getElementById('experienceModal').classList.remove('active'); audio.volume=1.0; }
+
+function toggleReflection(btn){
+  const div=btn.nextElementSibling;
+  if(div.style.display==='none'){ div.style.display='block'; btn.textContent='Hide Reflection'; }
+  else{ div.style.display='none'; btn.textContent='Read Reflection'; }
+}
+
+document.addEventListener('keydown', e=>{ if(e.key==="Escape") closeExperience(); });
+
+function filterArt(category){
+  document.querySelectorAll('.gallery-item').forEach(item=>{
+    if(category==='all'||item.dataset.category===category) item.style.display='block'; else item.style.display='none';
+  });
+}
+</script>
+
+</body>
+</html>
