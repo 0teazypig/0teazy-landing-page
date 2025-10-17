@@ -37,7 +37,7 @@
     .reflection-toggle{padding:10px 20px;margin-top:10px;background:var(--button);border:none;border-radius:25px;font-weight:bold;cursor:pointer;}
     .reflection-toggle:hover{background:var(--accent);color:#fff;}
 
-    .close-btn{position:fixed;top:30px;right:40px;font-size:1.8rem;color:#fff;background:rgba(255,255,255,0.1);border-radius:50%;width:45px;height:45px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background 0.3s;}
+    .close-btn{position:fixed;top:30px;right:80px;font-size:1.8rem;color:#fff;background:rgba(255,255,255,0.1);border-radius:50%;width:45px;height:45px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background 0.3s;}
     .close-btn:hover{background:rgba(255,255,255,0.3);}
 
     #ambientToggle{position:fixed;bottom:40px;right:40px;width:50px;height:50px;background:rgba(255,255,255,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.4rem;transition:0.3s;}
@@ -67,13 +67,13 @@
 
 <section class="gallery" id="gallery">
   <div class="gallery-item" data-category="paint" onclick="openExperience(0)" data-aos="zoom-in">
-    <img src="art1.jpg" alt="Art 1"><div class="caption">Waves of Sound</div>
+    <img src="art1.jpg" alt="Art 1"><div class="caption">DRAW!</div>
   </div>
   <div class="gallery-item" data-category="digital" onclick="openExperience(1)" data-aos="zoom-in">
-    <img src="art2.jpg" alt="Art 2"><div class="caption">Echoes of Gold</div>
+    <img src="art2.jpg" alt="Art 2"><div class="caption">R00M</div>
   </div>
   <div class="gallery-item" data-category="paint" onclick="openExperience(2)" data-aos="zoom-in">
-    <img src="art3.jpg" alt="Art 3"><div class="caption">Mindscape</div>
+    <img src="art3.jpg" alt="Art 3"><div class="caption">PLEAD!</div>
   </div>
 </section>
 
@@ -81,8 +81,8 @@
   <div class="close-btn" onclick="closeExperience()"><i class="fas fa-times"></i></div>
   <div class="experience-content" id="experienceContent"></div>
 </div>
-
-<audio id="ambient" src="ambient.mp3" loop></audio>
+<!-- <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/album/4Jk2M4PxtCTp9jdHXLCNKf?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe> -->
+<audio id="ambient" src="Dance in the Dark(1).mp3" loop></audio>
 <div id="ambientToggle" onclick="toggleAudio()"><i id="audioIcon" class="fas fa-volume-up"></i></div>
 
 <footer>
@@ -94,9 +94,9 @@
 
 <script>
 const artworks = [
-  { title:"Waves of Sound", image:"art1.jpg", description:"‘Waves of Sound’ explores how frequencies shape emotional landscapes — inspired by rhythm.", spotify:"https://open.spotify.com/embed/track/xyz", reflection:"Painted to the rhythm of a heartbeat rather than sound." },
-  { title:"Echoes of Gold", image:"art2.jpg", description:"‘Echoes of Gold’ symbolizes ancestral memory and self-belief.", spotify:"https://open.spotify.com/embed/track/abc", reflection:"Each brush stroke mirrors a lyric in motion." },
-  { title:"Mindscape", image:"art3.jpg", description:"An introspective piece — the clash between chaos and serenity when creating art from emotion.", spotify:"https://open.spotify.com/embed/playlist/123", reflection:"Explores inner mental landscapes." }
+  { title:"DRAW!", image:"art1.jpg", description:"‘DRAW!’ explores how frequencies shape emotional landscapes — inspired by African rhythm.", spotify:"https://open.spotify.com/embed/track/xyz", reflection:"DR0PPING 2025/10" },
+  { title:"R00M", image:"art2.jpg", description:"‘R00M’ symbolizes ancestral memory and self-belief.", spotify:"https://open.spotify.com/embed/album/4Jk2M4PxtCTp9jdHXLCNKf?utm_source=generator", reflection:"Each brush stroke mirrors a lyric in motion." },
+  { title:"Mindscape", image:"art3.jpg", description:"An introspective piece — the clash between chaos and serenity when creating art from emotion.", spotify:"https://open.spotify.com/embed/track/55lzE38v5fqeItIrMisCje?utm_source=generator", reflection:"Explores inner mental landscapes." }
 ];
 
 const audio = document.getElementById('ambient');
